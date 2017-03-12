@@ -17,8 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{00FC8BEA
 		Build\Project.targets = Build\Project.targets
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{E4CACB04-8B0B-421C-9306-885370D96EEA}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Properties", "Properties", "{573A0876-1E61-4162-8654-A95E0F0CA3FD}"
 	ProjectSection(SolutionItems) = preProject
 		Build\Properties\AssemblyInfoShared.cs = Build\Properties\AssemblyInfoShared.cs
