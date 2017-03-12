@@ -1,5 +1,5 @@
 ![Toolbar](../../wiki/Images/ToolBar.png)
-# Usage
+# Visual Studio Settings Switcher
 Easily switch to different Visual Studio settings when...
 * your laptop is docked, or when it's undocked and you're on the go.
 * giving a live presentation.
