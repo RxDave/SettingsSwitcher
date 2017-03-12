@@ -55,7 +55,7 @@
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <CodeAnalysisRuleSet>..\..\Build\Properties\SettingsSwitcher.ruleset</CodeAnalysisRuleSet>
     <CopyVsixExtensionFiles>True</CopyVsixExtensionFiles>
-    <CopyVsixExtensionLocation>..\..\Deployment\Release\DaveSexton.SettingsSwitcher.Vsix\VSIX\</CopyVsixExtensionLocation>
+    <CopyVsixExtensionLocation>..\..\Deployment\Release\DaveSexton.SettingsSwitcher.VSExtension\VSIX\</CopyVsixExtensionLocation>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\..\Build\Properties\AssemblyInfoShared.cs">
