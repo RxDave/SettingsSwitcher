@@ -12,7 +12,7 @@
 	</PropertyGroup>
 
 	<Choose>
-		<When Condition=" '$(MSBuildProjectName)' == 'DaveSexton.SettingsSwitcher.Vsix' ">
+		<When Condition=" '$(MSBuildProjectName)' == 'DaveSexton.SettingsSwitcher.VSExtension' ">
 			<PropertyGroup>
 				<DeploymentEnabled Condition=" '$(DeploymentEnabled)' == '' AND '$(Configuration)' == 'Release' ">True</DeploymentEnabled>
 				<DeploymentEnabled Condition=" '$(DeploymentEnabled)' == '' AND '$(Configuration)' != 'Release' ">False</DeploymentEnabled>
