@@ -1,8 +1,8 @@
 ![Toolbar](../../wiki/Images/ToolBar.png)
 # Visual Studio Settings Switcher
 Easily switch to different Visual Studio settings when...
-* your laptop is docked, or when it's undocked and you're on the go.
-* giving a live presentation.
+* docking your laptop, or when it's undocked and you're on the go.
+* presenting a live screencast.
 * recording a how-to video.
 * working on open source software with different code formatting requirements.
 * an update to Visual Studio or a bad VS extension resets your desired settings.
