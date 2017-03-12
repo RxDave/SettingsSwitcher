@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="Dictionary">
+		<xs:annotation>
+			<xs:documentation>Code Analysis Dictionary Schema.</xs:documentation>
+			<xs:documentation>http://msdn.microsoft.com/en-us/library/bb514188.aspx</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Words" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Unrecognized" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Excludes terms from the list of terms that code analysis identifies as correctly spelled.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element minOccurs="0" maxOccurs="unbounded" name="Word" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Word elements are not case-sensitive.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Recognized" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Includes terms in the list of terms that code analysis identifies as correctly spelled.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element minOccurs="0" maxOccurs="unbounded" name="Word" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Word elements are not case-sensitive.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Deprecated" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Includes terms in the list of terms that code analysis identifies as deprecated.</xs:documentation>
+									<xs:documentation>A deprecated term is a word that is spelled correctly but should not be used.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Term" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Term elements are not case-sensitive.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="PreferredAlternate" type="xs:string" use="required">
+															<xs:annotation>
+																<xs:documentation>You can leave the attribute value empty if you do not want to suggest an alternate.</xs:documentation>
+																<xs:documentation>The PreferredAlternate attribute value is case-sensitive.  Use Pascal case for compound alternates.</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Compound" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Includes terms in the list of terms that code analysis identifies as a compound word and specifies the correct casing of the term.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Term" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Term elements are not case-sensitive.</xs:documentation>
+												<xs:documentation>The term specified is automatically added to the DiscreteExceptions list.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="CompoundAlternate" type="xs:string" use="required">
+															<xs:annotation>
+																<xs:documentation>Specify the individual words that make up the compound term by capitalizing the first letter of the individual words (Pascal case).</xs:documentation>
+																<xs:documentation>The CompoundAlternate attribute value is case-sensitive.  Use Pascal case for compound alternates.</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="DiscreteExceptions" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Excludes terms in the list of terms that code analysis identifies as a single, discrete word when the term is checked by the casing rules for compound words.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element minOccurs="0" maxOccurs="unbounded" name="Term" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Term elements are not case-sensitive.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Acronyms" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Includes acronyms in the list of terms that code analysis identifies as correctly spelled and indicates how the acronym is cased when the term is checked by the casing rules for compound words.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="CasingExceptions" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Acronym" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Acronym elements are case-sensitive.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

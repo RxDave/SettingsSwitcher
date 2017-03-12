@@ -1,0 +1,76 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{F6964310-44E8-41A5-82E6-C886756D156E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Artifacts", "Artifacts", "{7DE70C73-9DD7-42D7-9B38-CBC62851B2A1}"
+	ProjectSection(SolutionItems) = preProject
+		Artifacts\License.txt = Artifacts\License.txt
+		Artifacts\Toggle VS Settings - Sara Ford.txt = Artifacts\Toggle VS Settings - Sara Ford.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{00FC8BEA-823B-4AAB-8C01-7F12D0BEFA07}"
+	ProjectSection(SolutionItems) = preProject
+		DaveSexton.SettingsSwitcher.vssettings = DaveSexton.SettingsSwitcher.vssettings
+		Build\Project.targets = Build\Project.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{E4CACB04-8B0B-421C-9306-885370D96EEA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Properties", "Properties", "{573A0876-1E61-4162-8654-A95E0F0CA3FD}"
+	ProjectSection(SolutionItems) = preProject
+		Build\Properties\AssemblyInfoShared.cs = Build\Properties\AssemblyInfoShared.cs
+		Build\Properties\CodeAnalysisDictionary.xml = Build\Properties\CodeAnalysisDictionary.xml
+		Build\Properties\CodeAnalysisDictionary.xsd = Build\Properties\CodeAnalysisDictionary.xsd
+		Build\Properties\Settings.StyleCop = Build\Properties\Settings.StyleCop
+		Build\Properties\SettingsSwitcher.ruleset = Build\Properties\SettingsSwitcher.ruleset
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{0C8FC501-26C4-4C34-9929-008870D9C5F0}"
+	ProjectSection(SolutionItems) = preProject
+		Artifacts\Images\Export Current Settings Button.png = Artifacts\Images\Export Current Settings Button.png
+		Artifacts\Images\Export Solution Settings Button.png = Artifacts\Images\Export Solution Settings Button.png
+		Artifacts\Images\Format Solution Button.png = Artifacts\Images\Format Solution Button.png
+		Artifacts\Images\SettingsSwitcher.png = Artifacts\Images\SettingsSwitcher.png
+		Artifacts\Images\ToolBar.png = Artifacts\Images\ToolBar.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4C7A377B-932F-4ECB-A6A7-E356B88156C8}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaveSexton.SettingsSwitcher", "Source\DaveSexton.SettingsSwitcher\DaveSexton.SettingsSwitcher.csproj", "{6856F53D-7DD6-4145-9F87-71AC5B6CB1A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaveSexton.SettingsSwitcher.Vsix", "Source\DaveSexton.SettingsSwitcher.Vsix\DaveSexton.SettingsSwitcher.Vsix.csproj", "{4BC85661-068B-4669-9644-F56131829641}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6856F53D-7DD6-4145-9F87-71AC5B6CB1A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6856F53D-7DD6-4145-9F87-71AC5B6CB1A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6856F53D-7DD6-4145-9F87-71AC5B6CB1A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6856F53D-7DD6-4145-9F87-71AC5B6CB1A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BC85661-068B-4669-9644-F56131829641}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BC85661-068B-4669-9644-F56131829641}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BC85661-068B-4669-9644-F56131829641}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BC85661-068B-4669-9644-F56131829641}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{573A0876-1E61-4162-8654-A95E0F0CA3FD} = {00FC8BEA-823B-4AAB-8C01-7F12D0BEFA07}
+		{0C8FC501-26C4-4C34-9929-008870D9C5F0} = {7DE70C73-9DD7-42D7-9B38-CBC62851B2A1}
+		{4C7A377B-932F-4ECB-A6A7-E356B88156C8} = {00FC8BEA-823B-4AAB-8C01-7F12D0BEFA07}
+		{6856F53D-7DD6-4145-9F87-71AC5B6CB1A2} = {F6964310-44E8-41A5-82E6-C886756D156E}
+		{4BC85661-068B-4669-9644-F56131829641} = {F6964310-44E8-41A5-82E6-C886756D156E}
+	EndGlobalSection
+EndGlobal

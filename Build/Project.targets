@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<PropertyGroup>
+		<SolutionDir Condition=" '$(SolutionDir)' == '' OR '$(SolutionDir)' == '*Undefined*' ">$(MSBuildThisFileDirectory)..\</SolutionDir>
+		<SourceDir Condition=" '$(SourceDir)' == '' ">$(SolutionDir)Source\</SourceDir>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<DeployDirBase>$(SolutionDir)Deployment\$(Configuration)\$(MSBuildProjectName)\</DeployDirBase>
+		<DeployDir Condition=" '$(DeployDir)' == '' ">$(DeployDirBase)</DeployDir>
+	</PropertyGroup>
+
+	<Choose>
+		<When Condition=" '$(MSBuildProjectName)' == 'DaveSexton.SettingsSwitcher.Vsix' ">
+			<PropertyGroup>
+				<DeploymentEnabled Condition=" '$(DeploymentEnabled)' == '' AND '$(Configuration)' == 'Release' ">True</DeploymentEnabled>
+				<DeploymentEnabled Condition=" '$(DeploymentEnabled)' == '' AND '$(Configuration)' != 'Release' ">False</DeploymentEnabled>
+			</PropertyGroup>
+		</When>
+
+		<Otherwise>
+			<PropertyGroup>
+				<DeploymentEnabled Condition=" '$(DeploymentEnabled)' == '' ">False</DeploymentEnabled>
+			</PropertyGroup>
+		</Otherwise>
+	</Choose>
+
+	<ItemGroup>
+		<!-- <DeployFiles Include="" /> -->
+	</ItemGroup>
+
+	<PropertyGroup>
+		<DeployDependsOn>
+			_GetDeployableFiles;
+			CopyFilesToDeployDir;
+		</DeployDependsOn>
+	</PropertyGroup>
+	<Target Name="Deploy" AfterTargets="Build" DependsOnTargets="$(DeployDependsOn)"
+					Condition=" $(DeploymentEnabled) ">
+	</Target>
+
+	<PropertyGroup>
+		<CleanDeployDependsOn>
+			CleanDeployDir;
+		</CleanDeployDependsOn>
+	</PropertyGroup>
+	<Target Name="CleanDeploy" AfterTargets="Clean" DependsOnTargets="$(CleanDeployDependsOn)"
+					Condition=" $(DeploymentEnabled) ">
+	</Target>
+
+	<Target Name="_GetDeployableFiles">
+
+		<PropertyGroup>
+			<ContractAssemblyName>$(TargetName).Contracts$(TargetExt)</ContractAssemblyName>
+			<ContractAssembly>$(TargetDir)CodeContracts\$(ContractAssemblyName)</ContractAssembly>
+		</PropertyGroup>
+
+		<ItemGroup>
+			<_DeployableFiles Include="@(DeployFiles)" />
+			<_DeployableFiles Include="$(TargetDir)*.exe" Exclude="$(TargetDir)*.vshost.exe" />
+			<_DeployableFiles Include="$(TargetDir)*.dll" />
+			<_DeployableFiles Include="$(TargetDir)*.pdb" />
+			<_DeployableFiles Include="$(TargetDir)*.config" />
+			<_DeployableFiles Include="$(TargetDir)*.vsix" />
+
+			<_DeployableFiles Include="$(ContractAssembly)" Condition=" Exists('$(ContractAssembly)') ">
+				<TargetFile>$(ContractAssemblyName)</TargetFile>
+			</_DeployableFiles>
+
+			<!-- Workaround: http://social.msdn.microsoft.com/Forums/en-US/msbuild/thread/8a2f4af8-7a57-454f-aa7d-684f3f89acf3 -->
+			<_DeployableFiles Condition=" !Exists('$(DocumentationFile)') AND '$(BuildingInsideVisualStudio)' == True " Include="$(TargetDir)*.tmp">
+				<TargetFile>$(TargetName).xml</TargetFile>
+			</_DeployableFiles>
+			<_DeployableFiles Condition=" Exists('$(DocumentationFile)') " Include="$(DocumentationFile)">
+				<TargetFile>$(TargetName).xml</TargetFile>
+			</_DeployableFiles>
+
+			<_DeployableFiles>
+				<TargetFile Condition=" '$(TargetFile)' == '' ">%(Filename)%(Extension)</TargetFile>
+			</_DeployableFiles>
+		</ItemGroup>
+
+	</Target>
+
+	<Target Name="CopyFilesToDeployDir" Inputs="@(_DeployableFiles)" Outputs="@(_DeployableFiles->'$(DeployDir)%(TargetFile)')">
+
+		<Copy Condition=" '%(_DeployableFiles.TargetFile)' != '' "
+					SourceFiles="@(_DeployableFiles)" DestinationFiles="@(_DeployableFiles->'$(DeployDir)%(TargetFile)')" />
+
+		<Copy Condition=" '%(_DeployableFiles.TargetFile)' == '' "
+					SourceFiles="@(_DeployableFiles)" DestinationFolder="$(DeployDir)" />
+
+	</Target>
+
+	<Target Name="CleanDeployDir">
+
+		<RemoveDir Directories="$(DeployDirBase)" />
+
+	</Target>
+
+</Project>

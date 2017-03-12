@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<!--  This is the file that defines the actual layout and type of the commands.
+				It is divided in different sections (e.g. command definition, command
+				placement, ...), with each defining a specific set of properties.
+				See the comment before each section for more details about how to
+				use it. -->
+
+	<!--  The VSCT compiler (the tool that translates this file into the binary 
+				format that VisualStudio will consume) has the ability to run a preprocessor 
+				on the vsct file; this preprocessor is (usually) the C++ preprocessor, so 
+				it is possible to define includes and macros with the same syntax used 
+				in C++ files. Using this ability of the compiler here, we include some files 
+				defining some of the constants that we will use inside the file. -->
+
+	<!--This is the file that defines the IDs for all the commands exposed by VisualStudio. -->
+	<Extern href="stdidcmd.h"/>
+
+	<!--This header contains the command ids for the menus provided by the shell. -->
+	<Extern href="vsshlids.h"/>
+
+	<!--The Commands section is where we the commands, menus and menu groups are defined.
+			This section uses a Guid to identify the package that provides the command defined inside it. -->
+	<Commands package="guidDaveSexton_SettingsSwitcher_VsixPkg">
+		<!-- Inside this section we have different sub-sections: one for the menus, another  
+		for the menu groups, one for the buttons (the actual commands), one for the combos 
+		and the last one for the bitmaps used. Each element is identified by a command id that  
+		is a unique pair of guid and numeric identifier; the guid part of the identifier is usually  
+		called "command set" and is used to group different command inside a logically related  
+		group; your package should define its own command set in order to avoid collisions  
+		with command ids defined by other packages. -->
+
+		<Menus>
+			<!-- Walkthrough: http://msdn.microsoft.com/en-us/library/bb164715(v=vs.110).aspx -->
+			<Menu guid="guidDaveSexton_SettingsSwitcher_VsixCmdSet" id="Toolbar" type="Toolbar">
+				<CommandFlag>DefaultDocked</CommandFlag>
+				<CommandFlag>DynamicVisibility</CommandFlag>
+				<Strings>
+					<ButtonText>Settings Switcher</ButtonText>
+					<CommandName>Settings Switcher</CommandName>
+				</Strings>
+			</Menu>
+		</Menus>
+
+		<!-- In this section you can define new menu groups. A menu group is a container for 
+				 other menus or buttons (commands); from a visual point of view you can see the 
+				 group as the part of a menu contained between two lines. The parent of a group 
+				 must be a menu. -->
+		<Groups>
+
+			<!-- Walkthrough: http://msdn.microsoft.com/en-us/library/bb164715(v=vs.110).aspx -->
+			<Group guid="guidDaveSexton_SettingsSwitcher_VsixCmdSet" id="ToolbarGroup" priority="0x0000">
+				<Parent guid="guidDaveSexton_SettingsSwitcher_VsixCmdSet" id="Toolbar"/>
+			</Group>
+
+		</Groups>
+
+		<!--Buttons section. -->
+		<!--This section defines the elements the user can interact with, like a menu command or a button 
+				or combo box in a toolbar. -->
+		<Buttons>
+			<!--To define a menu group you have to specify its ID, the parent menu and its display priority. 
+					The command is visible and enabled by default. If you need to change the visibility, status, etc, you can use
+					the CommandFlag node.
+					You can add more than one CommandFlag node e.g.:
+							<CommandFlag>DefaultInvisible</CommandFlag>
+							<CommandFlag>DynamicVisibility</CommandFlag>
+					If you do not want an image next to your command, remove the Icon node /> -->
+
+			<Button guid="guidDaveSexton_SettingsSwitcher_VsixCmdSet" id="cmdidExportCurrentSettings" priority="0x0100" type="Button">
+				<Parent guid="guidDaveSexton_SettingsSwitcher_VsixCmdSet" id="ToolbarGroup" />
+				<Icon guid="guidImages" id="bmpPic1" />
+				<Strings>
+					<ButtonText>Export Current Settings</ButtonText>
+				</Strings>
+			</Button>
+
+			<Button guid="guidDaveSexton_SettingsSwitcher_VsixCmdSet" id="cmdidExportSolutionSettings" priority="0x0150" type="Button">
+				<Parent guid="guidDaveSexton_SettingsSwitcher_VsixCmdSet" id="ToolbarGroup" />
+				<Icon guid="guidImages" id="bmpPicSave2" />
+				<Strings>
+					<ButtonText>Export current settings to the current solution's settings file.</ButtonText>
+				</Strings>
+			</Button>
+
+			<Button guid="guidDaveSexton_SettingsSwitcher_VsixCmdSet" id="cmdidFormatSolution" priority="0x0300" type="Button">
+				<Parent guid="guidDaveSexton_SettingsSwitcher_VsixCmdSet" id="ToolbarGroup" />
+				<Icon guid="guidImages" id="bmpPic2" />
+				<Strings>
+					<ButtonText>Format Solution</ButtonText>
+				</Strings>
+			</Button>
+
+		</Buttons>
+
+		<Combos>
+			<Combo guid="guidDaveSexton_SettingsSwitcher_VsixCmdSet" id="cmdidSettingsSelector" priority="0x0200"
+						 type="DropDownCombo" defaultWidth="175" idCommandList="cmdidSettingsSelectorGetItems">
+				<Parent guid="guidDaveSexton_SettingsSwitcher_VsixCmdSet" id="ToolbarGroup" />
+				<CommandFlag>StretchHorizontally</CommandFlag>
+				<Strings>
+					<CommandName>SelectSettings</CommandName>
+					<ButtonText>Select Settings</ButtonText>
+				</Strings>
+			</Combo>
+		</Combos>
+
+		<!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
+		<Bitmaps>
+			<!--  The bitmap id is defined in a way that is a little bit different from the others: 
+						the declaration starts with a guid for the bitmap strip, then there is the resource id of the 
+						bitmap strip containing the bitmaps and then there are the numeric ids of the elements used 
+						inside a button definition. An important aspect of this declaration is that the element id 
+						must be the actual index (1-based) of the bitmap inside the bitmap strip. -->
+			<Bitmap guid="guidImages" href="Resources\Images.png" usedList="bmpPic1, bmpPic2, bmpPicSave2, bmpPicX, bmpPicArrows"/>
+
+		</Bitmaps>
+
+	</Commands>
+
+	<VisibilityConstraints>
+		<VisibilityItem guid="guidDaveSexton_SettingsSwitcher_VsixCmdSet" id="Toolbar" context="UICONTEXT_NoSolution" />
+		<VisibilityItem guid="guidDaveSexton_SettingsSwitcher_VsixCmdSet" id="Toolbar" context="UICONTEXT_SolutionExists" />
+	</VisibilityConstraints>
+
+	<!-- 
+	The following config moves the "Tools > Import and Export Settings" command into the custom toolbar.
+	
+	This worked in testing; however, it doesn't make sense to expose that feature when it conflicts with 
+	this VS package.  The problem is that there appears to be no way to track when a user imports new 
+	settings without going through the custom commands provided by this VS package.  In other words, the 
+	drop-down cannot be synchronized with the current settings that were imported unless the user imports
+	them using the drop-down list directly.
+	
+	Users will be advised not to use the "Import and Export Settings" command in the Tools menu.
+	
+	<CommandPlacements>
+		<!- See UsedCommands section below ->
+		<CommandPlacement guid="guidVSStd2K" id="cmdidManageUserSettings" priority="0x0200">
+			<Parent guid="guidDaveSexton_SettingsSwitcher_VsixCmdSet" id="ToolbarGroup" />
+		</CommandPlacement>
+	</CommandPlacements>
+
+	<UsedCommands>
+		<!- Tools > Import and Export Settings... ->
+		<UsedCommand guid="guidVSStd2K" id="cmdidManageUserSettings" />
+	</UsedCommands>
+	-->
+
+	<Symbols>
+		<!-- This is the package guid. -->
+		<GuidSymbol name="guidDaveSexton_SettingsSwitcher_VsixPkg" value="{df47a1c4-0804-4f17-9a10-310b0a52892b}" />
+
+		<!-- This is the guid used to group the menu commands together -->
+		<GuidSymbol name="guidDaveSexton_SettingsSwitcher_VsixCmdSet" value="{491bca72-7687-41aa-81e1-fc0e3e746393}">
+
+			<!-- Toolbars (http://msdn.microsoft.com/en-us/library/bb164715.aspx) -->
+			<IDSymbol name="Toolbar" value="0x1000" />
+			<IDSymbol name="ToolbarGroup" value="0x1050" />
+
+			<!-- Commands -->
+			<IDSymbol name="cmdidSettingsSelector" value="0x0100" />
+			<IDSymbol name="cmdidSettingsSelectorGetItems" value="0x0101" />
+			<IDSymbol name="cmdidExportCurrentSettings" value="0x0102" />
+			<IDSymbol name="cmdidFormatSolution" value="0x0103" />
+			<IDSymbol name="cmdidExportSolutionSettings" value="0x0104" />
+
+		</GuidSymbol>
+
+		<GuidSymbol name="guidImages" value="{a3d23abc-e1a7-49db-930d-cf6b4083165b}" >
+			<IDSymbol name="bmpPic1" value="1" />
+			<IDSymbol name="bmpPic2" value="2" />
+			<IDSymbol name="bmpPicSave2" value="3" />
+			<IDSymbol name="bmpPicX" value="4" />
+			<IDSymbol name="bmpPicArrows" value="5" />
+			<IDSymbol name="bmpPicStrikethrough" value="6" />
+		</GuidSymbol>
+	</Symbols>
+
+</CommandTable>
